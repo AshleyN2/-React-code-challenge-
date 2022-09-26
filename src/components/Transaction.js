@@ -2,7 +2,7 @@ import React from "react";
 
 function Transaction(props) {
   
-  // Destructing to allow extraction of multiple properties from an object
+  // Destructing to allow extraction of multiple properties from array 
   let {date, description, category, amount} = props.transaction;
 
   return (

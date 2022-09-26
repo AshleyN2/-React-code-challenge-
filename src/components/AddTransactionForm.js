@@ -1,12 +1,12 @@
 import React from "react";
 
-
 function AddTransactionForm({addTransaction}) {
 
   // receives form data
   const handleSubmit = (e)=> {
     e.preventDefault();
 
+    // variable for new transaction input elements
     const newTransaction = {
       date: e.target.date.value,
       description: e.target.description.value,
@@ -18,10 +18,10 @@ function AddTransactionForm({addTransaction}) {
     addTransaction(newTransaction)
     e.target.reset(); // restores form's element default values
 
+    //POST method to add new transaction input to existing list
     fetch('http://localhost:8001/transactions', {
       method: "POST",
-      headers: { "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json",},
       body: JSON.stringify(newTransaction)
     })
     .then(response => response.json())
@@ -32,7 +32,7 @@ function AddTransactionForm({addTransaction}) {
 
   return (
     <div className="ui segment">
-      <form className="ui form" onSubmit={formSubmit}>
+      <form className="ui form" onSubmit={handleSubmit}>
         <div className="inline fields">
           <input type="date" name="date" />
           <input type="text" name="description" placeholder="Description" />

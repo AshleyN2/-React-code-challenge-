@@ -3,14 +3,12 @@ import Transaction from "./Transaction";
 
 function TransactionsList(props) {
 
+  // Accessing items in transactions array 
   let transactionArr = props.transaction.map((transactionItem) => {
     return <Transaction key={transactionItem.id} transaction={transactionItem} />;
-  }
-  );
+  });
   
-
   return (
-  
     <table className="ui celled striped padded table">
       <tbody>
         <tr>
@@ -30,7 +28,6 @@ function TransactionsList(props) {
         {transactionArr}
       </tbody>
     </table>
-  
   );
 }
 
