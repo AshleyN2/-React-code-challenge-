@@ -1,64 +1,42 @@
-//import React, { useState, useEffect } from "react";
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import TransactionsList from "./TransactionsList";
 import Search from "./Search";
 import AddTransactionForm from "./AddTransactionForm";
 
-/*
+
 function AccountContainer() {
   const [transactions, setTransactions] = useState([]);
-  useEffect(() => {
-  fetch("http://localhost:3000/transactions")
-      .then((response) => response.json())
-      .then((data) => {
-        setTransactions(data);
-      });
-})
+  function getTransactions(){
+    fetch("http://localhost:8001/transactions")
+    .then((response) => response.json())
+    .then(setTransactions);
+  }
+
+  useEffect(getTransactions,[]);
+
+function findSearch(search){
+  if (search === ''){
+    getTransactions(transactions)}
+    else 
+    {
+      const searchTransactions = transactions.filter(transaction => {
+        return transaction.description.toLowerCase().includes(search.toLowerCase())
+    })
+    setTransactions(searchTransactions) }
+  }
+
+function addTransaction(transaction){
+  setTransactions([...transactions, transaction])
+}
 
   return (
     <div>
-      <Search />
-      <AddTransactionForm />
-      <TransactionsList />
+      <Search findSearch={findSearch}/>
+      <AddTransactionForm addTransaction={addTransaction}/>
+      <TransactionsList transaction={transactions}/>
     </div>
   );
 }
 
 export default AccountContainer;
-*/
 
-class AccountContainer extends Component {
-  state = {
-    transactions: [],
-  };
-
-  // Fetching data from db.json
-  componentDidMount() {
-    fetch("http://localhost:8000/transactions")
-      .then((response) => response.json())
-      .then((data) => {
-        this.setState({ transactions: data });
-      });
-  }
-
-  // Adding transactions from the form
-
-  addTransactions = (addTransaction) => {
-    this.setState((prevState) => {
-      return {
-        transactions: [...prevState.transactions, addTransaction],
-      };
-    });
-  };
-
-  render() {
-    return (
-      <div>
-        <AddTransactionForm addTransactions={this.addTransaction} />
-        <TransactionsList transactions={this.state.transactions} />
-      </div>
-    );
-  }
-}
-
-export default AccountContainer;

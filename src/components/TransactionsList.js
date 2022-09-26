@@ -3,7 +3,7 @@ import Transaction from "./Transaction";
 
 function TransactionsList(props) {
 
-  let transactionArr = props.transactions.map((transactionItem) => {
+  let transactionArr = props.transaction.map((transactionItem) => {
     return <Transaction key={transactionItem.id} transaction={transactionItem} />;
   }
   );
